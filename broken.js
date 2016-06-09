@@ -71,3 +71,9 @@ $(function () {
     }
   });
 });
+
+// for deleting bricks
+// if ((oldBricks[r].widthX > 0 && oldBricks[r].widthX + oldBricks[r].brickWidth < 200)) {
+//       oldBricks[r].heightY += 20;
+//       ctx.clearRect (0, 0, canvas.width, canvas.height);
+//     }

@@ -10,7 +10,7 @@ var oldBricks = [];
 function Bricks () {
   this.color = 'red';
   this.widthX = canvas.width / 2;
-  this.heightY = 10;
+  this.heightY = 0;
   this.brickWidth = 20;
   this.brickHeight = 20;
 }
@@ -31,7 +31,7 @@ function drawBricks () {
   // collisionDetection
   if (bricks.heightY + 70 > canvas.height) {
     // log and reset height
-    moveY = bricks.heightY - 70;
+    moveY = bricks.heightY - 60;
     moveY = 10;
     // log and reset width
     moveX = bricks.widthX + 20;
@@ -46,7 +46,11 @@ function drawBricks () {
   // loop and draw old bricks
   for (var r = 0; r < oldBricks.length; r++) {
     oldBricks[r].draw();
-    // console.log(oldBricks[r]);
+    if (oldBricks[r].heightY < 20) {
+      alert('game is over!');
+      oldBricks = [];
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     if ((bricks.widthX < oldBricks[r].widthX + 20 && bricks.widthX + 20 > oldBricks[r].widthX) && (bricks.heightY <= oldBricks[r].heightY && bricks.heightY + 60 >= oldBricks[r].heightY)) {
       oldBricks.push(bricks);
       bricks = new Bricks();
@@ -62,7 +66,7 @@ $(function () {
       bricks.widthX -= moveX;
     } else if (e.keyCode === 39 && bricks.widthX + 20 < canvas.width) {
       bricks.widthX += moveX;
-    } else if (e.keyCode === 40 && bricks.heightY + 70 < canvas.height) {
+    } else if (e.keyCode === 40 && bricks.heightY + 60 < canvas.height) {
       bricks.heightY += moveY;
     }
   });

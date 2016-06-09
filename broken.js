@@ -54,15 +54,15 @@ function drawBricks () {
     oldBricks[r].draw();
   }
 }
-setInterval(drawBricks, 100);
+// setInterval(drawBricks, 100);
 
 // key press
 $(function () {
   $(document).keydown(function (e) {
-    if (e.keyCode === 37) {
+    if (e.keyCode === 37 && bricks.widthX > 0) {
       bricks.widthX -= moveX;
       console.log('left pressed!');
-    } else if (e.keyCode === 39) {
+    } else if (e.keyCode === 39 && bricks.widthX + 20< canvas.width) {
       bricks.widthX += moveX;
       console.log('right pressed!');
     }
